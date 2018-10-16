@@ -1,6 +1,7 @@
 const Koa = require('koa')
 const Router = require('koa-router')
 const JSON = require('koa-json')
+const Counter = require('./counter')
 
 
 /* DEFAULTS */
@@ -10,11 +11,12 @@ const app = new Koa()
 const router = new Router()
 
 router.put('/click', async ctx => {
-    ctx.body = { 'resp': 'Hello World' }
+    Counter.incr()
+    ctx.body = { 'counter': Counter.state() }
 });
 
 router.get('/clicks', async ctx => {
-    ctx.body = { 'resp': 'Hello World' }
+    ctx.body = { 'counter': Counter.state() }
 });
 
 app.use(JSON({pretty: true}))
