@@ -1,9 +1,9 @@
-const Koa = require('koa')
-const Router = require('koa-router')
-const JSON = require('koa-json')
+import Koa from 'koa'
+import Router from 'koa-router'
+import JSON from 'koa-json'
 
-const Counter = require('./counter')
-const Redis = require('async-redis')
+import Counter from './counter'
+import Redis from 'async-redis'
 
 /* DEFAULTS */
 const REDIS_HOST = 'localhost'
