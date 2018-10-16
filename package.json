@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "ioredis": "^4.1.0",
-    "koa": "^2.5.3"
+    "koa": "^2.5.3",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
