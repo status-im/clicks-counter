@@ -11,13 +11,22 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-util": "^0.5.5",
+    "gulp-count": "^1.0.0",
+    "gulp-debug": "^4.0.0",
     "nodemon": "^1.18.4"
   },
   "scripts": {
     "start": "nodemon --exec babel-node --presets env,stage-2 src/index.js",
-    "build": "babel src -o out/counter.js"
+    "clean": "gulp clean",
+    "build": "gulp"
   },
   "keywords": [],
   "author": "",
