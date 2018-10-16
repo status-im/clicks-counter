@@ -1,14 +1,20 @@
-//const Redis = require('ioredis')
-//const redis = new Redis()
+class Counter {
+  constructor(redis) {
+    this.redis = redis
+    /* make sure we don't miss errors */
+    this.redis.on("error", (err) => { console.log("Error: " + err) })
+  }
 
-var COUNTER = 0
-
-exports.incr = (val) => {
-  /* default to incrementing by one */
-  val = val == undefined ? 1 : val
-  COUNTER += val
+  async incr (val) {
+    /* default to incrementing by one */
+    val = val == undefined ? 1 : val
+    /* increment */
+		this.redis.incr('default')
+  }
+  
+  async state () {
+    return await this.redis.get('default')
+  }
 }
 
-exports.state = () => {
-  return COUNTER
-}
+module.exports = Counter
