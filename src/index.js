@@ -17,11 +17,11 @@ const counter = new Counter(redis)
 
 router.put('/click', async ctx => {
     counter.incr()
-    ctx.body = { 'counter': await counter.state() }
+    ctx.body = { 'count': await counter.state() }
 });
 
 router.get('/clicks', async ctx => {
-    ctx.body = { 'counter': await counter.state() }
+    ctx.body = { 'count': await counter.state() }
 });
 
 app.use(JSON({pretty: true}))
