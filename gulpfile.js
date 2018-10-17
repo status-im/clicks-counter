@@ -1,6 +1,5 @@
 const gulp = require('gulp')
 const babel = require('gulp-babel')
-const concat = require('gulp-concat-util')
 const clean = require('gulp-clean')
 const print = require('gulp-print').default
 const nodemon = require('gulp-nodemon')
@@ -23,7 +22,6 @@ gulp.task('build', () =>
   gulp.src('src/**/*.js')
     .pipe(babel())
     .pipe(print())
-    .pipe(concat.scripts('counter.js'))
     .pipe(gulp.dest('dist/'))
 )
 

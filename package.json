@@ -13,15 +13,11 @@
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-async-to-generator": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
-    "@babel/preset-stage-2": "^7.0.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
+    "gulp-babel": "^8.0.0-beta.2",
     "gulp-clean": "^0.4.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-concat-util": "^0.5.5",
-    "gulp-count": "^1.0.0",
-    "gulp-debug": "^4.0.0",
     "gulp-nodemon": "^2.2.1",
     "gulp-print": "^5.0.0",
     "nodemon": "^1.18.4"

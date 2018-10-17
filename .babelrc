@@ -1,7 +1,6 @@
 {
     "presets": [
-        ["env", { "targets": {"node": "current"} }],
-        "stage-2"
+        ["@babel/env", { "targets": {"node": "current"} }]
     ],
-    "plugins": ["transform-async-to-generator"]
+    "plugins": ["@babel/plugin-transform-async-to-generator"]
 }
