@@ -27,7 +27,7 @@
     "devel": "gulp devel",
     "clean": "gulp clean",
     "build": "gulp build",
-    "image": "docker build -t clicks-counter .",
+    "image": "docker build -t statusteam/clicks-counter .",
     "push": "docker push statusteam/clicks-counter"
   },
   "keywords": [],
