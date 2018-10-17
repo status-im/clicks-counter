@@ -23,10 +23,12 @@
     "nodemon": "^1.18.4"
   },
   "scripts": {
-    "start": "node dist/counter.js",
+    "start": "node app.js",
     "devel": "gulp devel",
     "clean": "gulp clean",
-    "build": "gulp build"
+    "build": "gulp build",
+    "image": "docker build -t clicks-counter .",
+    "push": "docker push statusteam/clicks-counter"
   },
   "keywords": [],
   "author": "",

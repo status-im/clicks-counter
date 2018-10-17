@@ -5,8 +5,7 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install --only=production
 
-COPY src/ ./src/
-COPY .babelrc ./
+COPY dist/ ./
 
 ENV REDIS_HOST=localhost \
     REDIS_PORT=6379 \
