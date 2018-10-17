@@ -11,10 +11,10 @@
     "koa-router": "^7.4.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-stage-2": "^7.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-clean": "^0.4.0",
@@ -23,10 +23,11 @@
     "gulp-count": "^1.0.0",
     "gulp-debug": "^4.0.0",
     "gulp-nodemon": "^2.2.1",
+    "gulp-print": "^5.0.0",
     "nodemon": "^1.18.4"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node dist/counter.js",
     "devel": "gulp devel",
     "clean": "gulp clean",
     "build": "gulp build"

@@ -1,6 +1,6 @@
 {
     "presets": [
-        ["env", { "targets": {"node": "8"} }],
+        ["env", { "targets": {"node": "current"} }],
         "stage-2"
     ],
     "plugins": ["transform-async-to-generator"]

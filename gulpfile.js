@@ -18,6 +18,7 @@ gulp.task('clean', () =>
   gulp.src('dist/*').pipe(clean())
 )
 
+/* WARNING: This is broken right now */
 gulp.task('build', () =>
   gulp.src('src/**/*.js')
     .pipe(babel())
