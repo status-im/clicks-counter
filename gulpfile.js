@@ -6,7 +6,7 @@ const nodemon = require('gulp-nodemon')
 
 gulp.task('devel', () => {
   nodemon({
-      script: 'src/app.js',
+      script: 'src/server.js',
       presets: ['env', 'stage-2'],
       exec: 'babel-node'
     })

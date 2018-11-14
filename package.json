@@ -17,20 +17,56 @@
     "@babel/node": "^7.0.0",
     "@babel/plugin-transform-async-to-generator": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
+    "babel-core": "^7.0.0-bridge.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^8.0.0-beta.2",
     "gulp-clean": "^0.4.0",
     "gulp-nodemon": "^2.2.1",
     "gulp-print": "^5.0.0",
-    "nodemon": "^1.18.4"
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.4",
+    "supertest": "^3.3.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
+    "test": "jest",
+    "testw": "jest --watchAll",
     "devel": "gulp devel",
     "clean": "gulp clean",
     "build": "gulp build",
     "image": "docker build -t statusteam/clicks-counter .",
     "push": "docker push statusteam/clicks-counter"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**",
+      "!**/build/**",
+      "!**/coverage/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "coverageReporters": [
+      "text",
+      "text-summary"
+    ],
+    "testRegex": "/test/.*.js$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/",
+      "/coverage/"
+    ]
   },
   "keywords": [],
   "author": "",

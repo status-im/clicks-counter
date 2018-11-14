@@ -9,7 +9,6 @@ import Redis from 'async-redis'
 /* DEFAULTS */
 const REDIS_HOST = process.env.REDIS_HOST || 'localhost'
 const REDIS_PORT = process.env.REDIS_PORT || 6379
-const LISTEN_PORT = process.env.LISTEN_PORT || 3000
 
 const app = new Koa()
 const router = new Router()
@@ -23,6 +22,7 @@ app.on('error', (err, ctx) => {
 router.put('/clicks/:id', async ctx => {
   counter.incr(ctx.params.id)
   ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
+  ctx.status = 201
 });
 
 router.get('/clicks', async ctx => {
@@ -38,6 +38,4 @@ app.use(Logger())
    .use(router.routes())
    .use(router.allowedMethods())
 
-app.listen(LISTEN_PORT)
-console.log(`Redis connection: ${REDIS_HOST}:${REDIS_PORT}`)
-console.log(`Started at: http://localhost:${LISTEN_PORT}/`)
+module.exports = app
