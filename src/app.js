@@ -15,7 +15,7 @@ const router = new Router()
 const redis = Redis.createClient(REDIS_PORT, REDIS_HOST)
 const counter = new Counter(redis)
 
-router.put('/click/:id', async ctx => {
+router.put('/clicks/:id', async ctx => {
     counter.incr(ctx.params.id)
     ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
 });
