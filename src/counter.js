@@ -7,17 +7,24 @@ class Counter {
     this.redis.on("error", (err) => { console.log("Error: " + err) })
   }
 
-  async incr (val) {
+  async incr (key, val) {
     /* default to incrementing by one */
     val = val == undefined ? 1 : val
     /* increment */
-		this.redis.incr(this.name)
+		this.redis.incr(key ? key : this.name)
   }
   
-  async state () {
-    let count = await this.redis.get(this.name)
+  async state (key) {
+    let count = await this.redis.get(key ? key : this.name)
     /* keys in redis are set to null by default */
     return count == null ? 0 : count
+  }
+
+  async list () {
+    let keys = await this.redis.keys('*')
+    let vals = await this.redis.mget(keys)
+    /* combine list of keys and values into an object */
+    return keys.reduce((obj, k, i) => ({...obj, [k]: vals[i] }), {})
   }
 }
 
