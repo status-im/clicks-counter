@@ -25,6 +25,7 @@
     "gulp-print": "^5.0.0",
     "jest": "^23.6.0",
     "nodemon": "^1.18.4",
+    "sinon": "^7.1.1",
     "supertest": "^3.3.0"
   },
   "scripts": {
