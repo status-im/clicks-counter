@@ -21,16 +21,16 @@ app.on('error', (err, ctx) => {
 });
 
 router.put('/clicks/:id', async ctx => {
-    counter.incr(ctx.params.id)
-    ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
+  counter.incr(ctx.params.id)
+  ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
 });
 
 router.get('/clicks', async ctx => {
-    ctx.body = await counter.list()
+  ctx.body = await counter.list()
 });
 
 router.get('/clicks/:id', async ctx => {
-    ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
+  ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
 });
 
 app.use(Logger())
