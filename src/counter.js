@@ -22,6 +22,7 @@ class Counter {
 
   async list () {
     let keys = await this.redis.keys('*')
+    if (keys.length == 0) { return {} }
     let vals = await this.redis.mget(keys)
     /* combine list of keys and values into an object */
     return keys.reduce((obj, k, i) => ({...obj, [k]: vals[i] }), {})
