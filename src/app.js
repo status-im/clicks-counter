@@ -1,12 +1,15 @@
 import Koa from 'koa'
 import Router from 'koa-router'
 import JSON from 'koa-json'
-import Logger from 'koa-logger'
 
 const App = (counter) => {
   const app = new Koa()
   const router = new Router()
   
+  app.use(router.routes())
+     .use(router.allowedMethods())
+     .use(JSON({pretty: true}))
+
   app.on('error', (err, ctx) => {
     console.error('server error', err, ctx)
   });
@@ -24,11 +27,6 @@ const App = (counter) => {
   router.get('/clicks/:id', async ctx => {
     ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
   });
-  
-  app.use(Logger())
-     .use(JSON({pretty: true}))
-     .use(router.routes())
-     .use(router.allowedMethods())
 
   return app
 }
