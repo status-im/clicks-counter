@@ -23,10 +23,13 @@ const App = (counter) => {
     ctx.body = await counter.metrics()
   })
 
-  router.put('/clicks/:id', async ctx => {
+  const clickIncrement = async ctx => {
     ctx.body = { [ctx.params.id]: await counter.incr(ctx.params.id) }
     ctx.status = 201
-  })
+  }
+
+  router.put('/clicks/:id', clickIncrement)
+  router.post('/clicks/:id', clickIncrement)
   
   router.get('/clicks', async ctx => {
     ctx.body = await counter.list()
