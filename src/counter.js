@@ -1,8 +1,13 @@
+const metricsName = 'clicks_counter'
+const metricsHeader = `
+# Counts of clicks for every key available in the service store.
+# HELP ${metricsName} List of clicks for counted for every key.
+# TYPE ${metricsName} counter
+`
+
 class Counter {
   constructor(redis, name) {
     this.redis = redis
-    /* assume the key is called "clicks" */
-    this.name = name == undefined ? "clicks" : name
     /* make sure we don't miss errors */
     this.redis.on("error", (err) => { console.log("Error: " + err) })
   }
@@ -11,11 +16,12 @@ class Counter {
     /* default to incrementing by one */
     val = val == undefined ? 1 : val
     /* increment */
-		this.redis.incr(key ? key : this.name)
+		await this.redis.incr(key)
+    return await this.state(key)
   }
   
   async state (key) {
-    let count = await this.redis.get(key ? key : this.name)
+    let count = await this.redis.get(key)
     /* keys in redis are set to null by default */
     return count == null ? 0 : count
   }
@@ -26,6 +32,14 @@ class Counter {
     let vals = await this.redis.mget(keys)
     /* combine list of keys and values into an object */
     return keys.reduce((obj, k, i) => ({...obj, [k]: vals[i] }), {})
+  }
+
+  async metrics () {
+    let metrics = await this.list()
+    let metricsFormatted = Object.keys(metrics).map((key) => (
+      `${metricsName}{key="${key}"} ${metrics[key]}`
+    ))
+    return metricsHeader + metricsFormatted.join('\n')
   }
 }
 

@@ -12,21 +12,29 @@ const App = (counter) => {
 
   app.on('error', (err, ctx) => {
     console.error('server error', err, ctx)
-  });
+  })
   
+  router.get('/health', async (ctx) => {
+    ctx.body = 'OK'
+  })
+
+  /* Metrics related handlers */
+  router.get('/metrics', async (ctx) => {
+    ctx.body = await counter.metrics()
+  })
+
   router.put('/clicks/:id', async ctx => {
-    counter.incr(ctx.params.id)
-    ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
+    ctx.body = { [ctx.params.id]: await counter.incr(ctx.params.id) }
     ctx.status = 201
-  });
+  })
   
   router.get('/clicks', async ctx => {
     ctx.body = await counter.list()
-  });
+  })
   
   router.get('/clicks/:id', async ctx => {
     ctx.body = { [ctx.params.id]: await counter.state(ctx.params.id) }
-  });
+  })
 
   return app
 }
