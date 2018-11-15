@@ -3,7 +3,7 @@ const metricsHeader = `
 # Counts of clicks for every key available in the service store.
 # HELP ${metricsName} List of clicks for counted for every key.
 # TYPE ${metricsName} counter
-`
+`.trim()
 
 class Counter {
   constructor(redis, name) {
@@ -39,7 +39,7 @@ class Counter {
     let metricsFormatted = Object.keys(metrics).map((key) => (
       `${metricsName}{key="${key}"} ${metrics[key]}`
     ))
-    return metricsHeader + metricsFormatted.join('\n')
+    return metricsHeader + '\n' + metricsFormatted.join('\n')
   }
 }
 
