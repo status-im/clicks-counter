@@ -16,7 +16,7 @@ class Counter {
     /* default to incrementing by one */
     val = val == undefined ? 1 : val
     /* increment */
-		await this.redis.incr(key)
+    await this.redis.incr(key)
     return await this.state(key)
   }
   

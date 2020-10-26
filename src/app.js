@@ -24,12 +24,13 @@ const App = (counter) => {
   })
 
   const clickIncrement = async ctx => {
-    ctx.body = { [ctx.params.id]: await counter.incr(ctx.params.id) }
+    const id = ctx.params[0]
+    ctx.body = { [id]: await counter.incr(id) }
     ctx.status = 201
   }
 
-  router.put('/clicks/:id', clickIncrement)
-  router.post('/clicks/:id', clickIncrement)
+  /* Use regex to reduce chance of inserting non-valid values */
+  router.post(/^\/clicks\/([a-z]+:[a-z]{3})$/, clickIncrement)
   
   router.get('/clicks', async ctx => {
     ctx.body = await counter.list()
