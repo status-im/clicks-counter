@@ -1,28 +1,23 @@
 const gulp = require('gulp')
-const babel = require('gulp-babel')
-const clean = require('gulp-clean')
-const print = require('gulp-print').default
+const gulpBabel = require('gulp-babel')
+const gulpClean = require('gulp-clean')
+const gulpPrint = require('gulp-print').default
 const nodemon = require('gulp-nodemon')
 
-gulp.task('devel', () => {
-  nodemon({
-      script: 'src/server.js',
-      presets: ['env', 'stage-2'],
-      exec: 'babel-node'
-    })
+const devel = (done) =>
+  nodemon({ script: 'src/server.js', exec: 'babel-node', done })
     .on('restart', () => { console.log('>> node restart') })
-})
 
-gulp.task('clean', () =>
-  gulp.src('dist/*').pipe(clean())
-)
+const clean = () => gulp.src('dist/*').pipe(gulpClean())
 
 /* WARNING: This is broken right now */
-gulp.task('build', () =>
+const build = () =>
   gulp.src('src/**/*.js')
-    .pipe(babel())
-    .pipe(print())
+    .pipe(gulpBabel())
+    .pipe(gulpPrint())
     .pipe(gulp.dest('dist/'))
-)
 
-gulp.task('default', ['clean', 'build'])
+exports.devel = devel
+exports.clean = clean
+exports.build = build
+exports.default = gulp.series(clean, build)
