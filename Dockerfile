@@ -1,9 +1,9 @@
-FROM node:8.12-slim
+FROM node:14-alpine
 
 WORKDIR /app
 
 COPY package.json ./
-RUN npm install --only=production
+RUN yarn install --production
 
 COPY dist/ ./
 
