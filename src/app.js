@@ -30,7 +30,7 @@ const App = (counter) => {
   }
 
   /* Use regex to reduce chance of inserting non-valid values */
-  router.post(/^\/clicks\/([a-z]+:[a-z]{3})$/, clickIncrement)
+  router.post(/^\/clicks\/([a-z]+:[a-z]{3,6})$/, clickIncrement)
   
   router.get('/clicks', async (ctx) => {
     ctx.body = await counter.list()
